@@ -1,0 +1,292 @@
+local gui = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local main2 = Instance.new("Frame")
+
+            --main--
+
+local label = Instance.new("TextLabel")
+local km = Instance.new("TextLabel")
+local maxu = Instance.new("TextLabel")
+local kts = Instance.new("TextLabel")
+local kr1 = Instance.new("Frame")
+local kr2 = Instance.new("Frame")
+
+            --main2--
+            
+local available = Instance.new("TextLabel")
+local hypercheck = Instance.new("TextLabel")
+
+_G.speedom = true
+
+gui.Parent = game.CoreGui
+gui.Name = "gui"
+
+main.Name = "main"
+main.Parent = gui
+main.Position = UDim2.new(0.85,-450,0.1,-15)
+main.BackgroundTransparency = 0.3
+main.BackgroundColor3 = Color3.fromRGB(45,45,45)
+main.BorderColor3 = Color3.fromRGB(27,42,53)
+main.Size = UDim2.new(0,200,0,60)
+main.Draggable = false
+main.Active = true
+
+main2.Name = "main2"
+main2.Parent = gui
+main2.Position = UDim2.new(0.75,-544,0.2,-73)
+main2.BackgroundTransparency = 0.3
+main2.BackgroundColor3 = Color3.fromRGB(45,45,45)
+main2.BorderColor3 = Color3.fromRGB(27,42,53)
+main2.Size = UDim2.new(0,249,0,50)
+main2.Draggable = false
+main2.Active = true
+main2.Visible = false
+
+            --main--
+
+label.Name = "text"
+label.Parent = main
+label.BackgroundTransparency = 1
+label.Text = "   ��/�         ����         ���"
+label.Position = UDim2.new(0.45,0,0.2,0)
+label.TextColor3 = Color3.fromRGB(0,105,255)
+label.Font = Enum.Font.SourceSans
+label.TextStrokeColor3 = Color3.fromRGB(30, 15, 160)
+label.TextStrokeTransparency = 0
+label.TextSize = 20
+
+km.Parent = main
+km.Name = "kilom"
+km.Position = UDim2.new(0.027,0,0.5,0)
+km.TextSize = 20
+km.Font = Enum.Font.SourceSans
+km.TextStrokeColor3 = Color3.fromRGB(30,160,15)
+km.TextColor3 = Color3.fromRGB(0,255,102)
+km.TextStrokeTransparency = 0
+km.Text = "1234"
+km.BackgroundTransparency = 1
+km.Size = UDim2.new(0,55,0,25)
+
+maxu.Parent = main
+maxu.Name = "max"
+maxu.Position = UDim2.new(0.355,0,0.5,0)
+maxu.TextSize = 20
+maxu.Font = Enum.Font.SourceSans
+maxu.TextStrokeColor3 = Color3.fromRGB(200,230,5)
+maxu.TextColor3 = Color3.fromRGB(230,255,0)
+maxu.TextStrokeTransparency = 0
+maxu.Text = "1234"
+maxu.BackgroundTransparency = 1
+maxu.Size = UDim2.new(0,55,0,25)
+
+kts.Parent = main
+kts.Name = "kts"
+kts.BackgroundTransparency = 1
+kts.Position = UDim2.new(0.66,0,0.5,0)
+kts.TextSize = 20
+kts.Text = "1234"
+kts.Font = Enum.Font.SourceSans
+kts.TextStrokeColor3 = Color3.fromRGB(255,40,25)
+kts.TextColor3 = Color3.fromRGB(255,40,45)
+kts.TextStrokeTransparency = 0
+kts.Size = UDim2.new(0,55,0,25)
+
+kr1.Parent = main
+kr1.Position = UDim2.new(0.34,0,0,0)
+kr1.Size = UDim2.new(0,2,0,60)
+kr1.BackgroundColor3 = Color3.fromRGB(200,20,60)
+kr1.BorderColor3 = Color3.fromRGB(30,60,220)
+
+kr2.Parent = main
+kr2.Position = UDim2.new(0.63,0,0,0)
+kr2.Size = UDim2.new(0,2,0,60)
+kr2.BackgroundColor3 = Color3.fromRGB(200,20,60)
+kr2.BorderColor3 = Color3.fromRGB(30,60,220)
+
+            --main2--
+
+available.Parent = main2
+available.Name = "avail"
+available.BackgroundTransparency = 1
+available.Position = UDim2.new(0.25,0,0.5,0)
+available.TextSize = 18
+available.Text = [[HYPERSONIC
+AVAILABLE(N)]]
+available.Font = Enum.Font.FredokaOne
+available.TextColor3 = Color3.fromRGB(255,40,45)
+available.TextStrokeTransparency = 0
+available.Visible = false
+
+hypercheck.Parent = main2
+hypercheck.Name = "hypercheck"
+hypercheck.BackgroundTransparency = 1
+hypercheck.Position = UDim2.new(0.75,0,0.5,0)
+hypercheck.TextSize = 22
+hypercheck.Text = ""
+hypercheck.Font = Enum.Font.Jura
+hypercheck.Visible = false
+hypercheck.BorderColor3 = Color3.fromRGB(0,0,0)
+hypercheck.TextColor3 = Color3.fromRGB(255,0,0)
+hypercheck.TextStrokeTransparency = 0
+
+task.spawn(function()
+while _G.speedom do
+        task.wait()
+    if (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")) then
+    km.Text = string.format("%.1f",((game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)*1.839))
+    maxu.Text = string.format("%.2f",(game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)/(1.958)/340.27777778)
+    kts.Text = string.format("%.1f",game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)
+    end
+end
+end)
+
+Players = game:GetService("Players")
+IYMouse = Players.LocalPlayer:GetMouse()
+local UIS = game:GetService("UserInputService")
+
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+
+function vFLY(vfspeed)
+	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+	repeat wait() until IYMouse
+
+	local T = getRoot(Players.LocalPlayer.Character)
+	CONTROL = {F = 0}
+	lCONTROL = {F = 0}
+	local SPEED = 0
+
+	local function FLY()
+		FLYING = true
+		local BG = Instance.new('BodyGyro')
+		local BV = Instance.new('BodyVelocity')
+		BG.P = 9e4
+		BG.Parent = T
+		BV.Parent = T
+		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		BG.cframe = T.CFrame
+		BV.velocity = Vector3.new(0, 0, 0)
+		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		task.spawn(function()
+			repeat wait()
+				if CONTROL.F ~= 0 then
+				    SPEED = 50
+				elseif not CONTROL.F and SPEED ~= 0 then
+				    SPEED = 0
+				end
+		     	if CONTROL.F ~= 0 or CONTROL.F == 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * CONTROL.F) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(0, 0, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+				else
+					BV.velocity = Vector3.new(0, 0, 0)
+			    end
+				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+			until not FLYING
+			BG:Destroy()
+			BV:Destroy()
+			if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+				Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+			end
+		end)
+	end
+			CONTROL.F = vfspeed
+	FLY()
+end
+
+function NOFLY()
+	FLYING = false
+	if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+		Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+	end
+end
+
+local onekts = 93.511
+_G.OnOff = false
+_G.ended = false
+_G.toend = false
+
+task.spawn(function()
+    while true do
+        task.wait()
+        if (game.Players.LocalPlayer:FindFirstChild("PlayerGui")) then
+        repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("PlaneGui")
+        if game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text == "Cruising" or game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text == "0" then
+        else
+        local s = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
+        local speed = s:gsub("kts","")
+        if tonumber(speed) >= 1200 then
+        available.Visible = true
+        else available.Visible = false
+        end
+        if game.Players.LocalPlayer.PlayerGui.PlaneGui.Enabled == true then
+        main2.Visible = true
+        else main2.Visible = false hypercheck.Visible = false
+        end
+        end
+        end
+    end
+end)
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.N then
+if (game.Players.LocalPlayer:FindFirstChild("PlayerGui")) then
+repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("PlaneGui")
+if game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text == "Cruising" or game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text == "0" then
+else
+if (game.Players.LocalPlayer.PlayerGui.PlaneGui.Enabled == true) then
+local s = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
+local perc = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Throttle.Bar.Percent.Text
+local speed = s:gsub("kts","")
+local a = speed
+if _G.OnOff == true and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
+_G.OnOff = false
+NOFLY()
+hypercheck.Visible = false
+
+elseif _G.OnOff == false and tonumber(speed) >= 1200 and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
+    if _G.toend == true then
+        _G.ended = true
+    elseif _G.toend == false then
+        hypercheck.Visible = true
+    for i=1,1500 do
+    if (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) and (game.Players.LocalPlayer.PlayerGui.PlaneGui.Enabled == true) then
+    vFLY(a/onekts)
+    hypercheck.Text = string.format("%.0f",a).."/4000"
+    if tonumber(a) >= 4000 then
+        break
+        else
+        task.wait(0.025)
+    if perc == "100%" then
+    a = a+8
+    elseif perc >= "80%" then
+    a = a+7
+    elseif perc >= "60%" then
+    a = a+6
+    elseif perc >= "40%" then
+    a = a+5
+    elseif perc >= "20%" then
+    a = a+4
+    elseif perc < "20%" and perc ~= "0%" then
+    a = a+3
+    end
+    end
+    _G.toend = true
+    if _G.ended then hypercheck.Visible = false NOFLY() _G.ended = false _G.toend = false _G.OnOff = false break end
+    else hypercheck.Visible = false NOFLY() _G.OnOff = false _G.ended = false _G.toend = false break end
+end
+_G.OnOff = true
+_G.ended = false
+_G.toend = false
+end
+end
+else
+game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text = "0kts"
+_G.OnOff = false _G.ended = false _G.toend = false
+hypercheck.Visible = false
+NOFLY()
+end
+end
+end
+end
+end)
