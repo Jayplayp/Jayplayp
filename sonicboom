@@ -1,23 +1,40 @@
-for i=1,3 do
-local sound = Instance.new("Sound")
-sound.Parent = workspace.Spawns.ASkopelos
-sound.Name = "Sredne"
-sound.SoundId = "rbxassetid://9119382813"
-sound.Volume = 10
-sound.RollOffMaxDistance = 3400
-sound.RollOffMinDistance = 1900
-sound.RollOffMode = "InverseTapered"
-end
-for i=1,3 do 
-local sound = Instance.new("Sound")
-sound.Parent = workspace.Spawns.ASkopelos
-sound.Name = "Sredne2"
-sound.SoundId = "rbxassetid://9119382493"
-sound.Volume = 10
-sound.RollOffMaxDistance = 3400
-sound.RollOffMinDistance = 1900
-sound.RollOffMode = "InverseTapered"
-end
+_G.idk = true
+_G.en = true
+
+task.spawn(function()
+    while _G.idk do
+    task.wait()
+        for i,v in pairs(workspace.Aircraft:GetChildren()) do
+            if v:FindFirstChild("Main") then
+                if v.Main:FindFirstChild("Engine") then
+                    if v.Main.Engine:FindFirstChild("Sredne") or v.Main.Engine:FindFirstChild("Sredne2") then
+                        else
+                        for i=1,3 do
+                        local sound = Instance.new("Sound")
+                        sound.Parent = v.Main.Engine
+                        sound.Name = "Sredne"
+                        sound.SoundId = "rbxassetid://9119382813"
+                        sound.Volume = 10
+                        sound.RollOffMaxDistance = 3400
+                        sound.RollOffMinDistance = 1900
+                        sound.RollOffMode = "InverseTapered"
+                        end
+                        for i=1,3 do 
+                        local sound2 = Instance.new("Sound")
+                        sound2.Parent = v.Main.Engine
+                        sound2.Name = "Sredne2"
+                        sound2.SoundId = "rbxassetid://9119382493"
+                        sound2.Volume = 10
+                        sound2.RollOffMaxDistance = 3400
+                        sound2.RollOffMinDistance = 1900
+                        sound2.RollOffMode = "InverseTapered"
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
 
 local difference = 0.07
 
@@ -36,21 +53,31 @@ local waiting5_1Rand1 = 0.8 local waiting5_1Rand2 = waiting5_1Rand1-difference
 local timing5_6Mach6_6 = true
 local waiting6_1Rand1 = 0.55 local waiting6_1Rand2 = waiting6_1Rand1-difference
 
-_G.en = true
+local a = {}
 
 task.spawn(function()
     while _G.en do
         task.wait()
-local currentMach = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833/1.958/340.27777778
-local a = workspace.Spawns.ASkopelos.Position
+        if game.Players.LocalPlayer.Character:FindFirstChild("Torso") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+for i,v in pairs(workspace.Aircraft:GetChildren()) do
+    if v:FindFirstChild("Main") then
+        if v.Main:FindFirstChild("Engine") then
+            a[v.Main.Engine] = v.Main.Engine
+        end
+    end
+end
 local b = game.Players.LocalPlayer.Character.Torso.Position
-local magn = math.abs((a-b).magnitude)
-if magn < 2500 and timing1_95Mach3_2 then
-if currentMach > 1.95 and currentMach < 3.2 then
+for k in pairs(a) do
+local magn = math.abs((k.Position-b).magnitude)
+
+if magn < 2500 and magn > 20 then
+
+    
+if k.Velocity.Magnitude*1.833/1.958/340.27777778 > 1.95 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 3.2 then
 local rand = math.random(1,2)
 if rand == 1 and timing1_95Mach3_2 then
     wait(waiting2_5Rand1)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne" then
         v.Playing = true
     end
@@ -60,7 +87,7 @@ wait(6)
 timing1_95Mach3_2 = true
 elseif rand == 2 and timing1_95Mach3_2 then
     wait(waiting2_5Rand2)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne2" then
         v.Playing = true
     end
@@ -71,11 +98,11 @@ timing1_95Mach3_2 = true
 end
 
 
-elseif currentMach > 1.3 and currentMach < 1.95 then
+elseif k.Velocity.Magnitude*1.833/1.958/340.27777778 > 1.3 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 1.95 then
     local rand = math.random(1,2)
 if rand == 1 and timing1_3Mach1_95 then
     wait(waiting1_5Rand1)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne" then
         v.Playing = true
     end
@@ -85,7 +112,7 @@ wait(6)
 timing1_3Mach1_95 = true
 elseif rand == 2 and timing1_3Mach1_95 then
     wait(waiting1_5Rand2)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne2" then
         v.Playing = true
     end
@@ -96,11 +123,11 @@ timing1_3Mach1_95 = true
 end
 
 
-elseif currentMach > 3.2 and currentMach < 4.55 then
+elseif k.Velocity.Magnitude*1.833/1.958/340.27777778 > 3.2 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 4.55 then
     local rand = math.random(1,2)
 if rand == 1 and timing3_2Mach4_55 then
     wait(waiting3_7Rand1)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne" then
         v.Playing = true
     end
@@ -110,7 +137,7 @@ wait(6)
 timing3_2Mach4_55 = true
 elseif rand == 2 and timing3_2Mach4_55 then
     wait(waiting3_7Rand2)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne2" then
         v.Playing = true
     end
@@ -121,11 +148,11 @@ timing3_2Mach4_55 = true
 end
 
 
-elseif currentMach > 4.55 and currentMach < 5.6 then
+elseif k.Velocity.Magnitude*1.833/1.958/340.27777778 > 4.55 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 5.6 then
     local rand = math.random(1,2)
 if rand == 1 and timing4_55Mach5_6 then
     wait(waiting5_1Rand1)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne" then
         v.Playing = true
     end
@@ -135,7 +162,7 @@ wait(6)
 timing4_55Mach5_6 = true
 elseif rand == 2 and timing4_55Mach5_6 then
     wait(waiting5_1Rand2)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne2" then
         v.Playing = true
     end
@@ -146,11 +173,11 @@ timing4_55Mach5_6 = true
 end
 
 
-elseif currentMach > 5.6 and currentMach < 6.6 then
+elseif k.Velocity.Magnitude*1.833/1.958/340.27777778 > 5.6 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 6.6 then
     local rand = math.random(1,2)
 if rand == 1 and timing5_6Mach6_6 then
     wait(waiting6_1Rand1)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne" then
         v.Playing = true
     end
@@ -160,7 +187,7 @@ wait(6)
 timing5_6Mach6_6 = true
 elseif rand == 2 and timing5_6Mach6_6 then
     wait(waiting6_1Rand2)
-for i,v in pairs(workspace.Spawns.ASkopelos:GetChildren()) do
+for i,v in pairs(k:GetChildren()) do
     if v.Name == "Sredne2" then
         v.Playing = true
     end
@@ -171,6 +198,8 @@ timing5_6Mach6_6 = true
 end
 
 
+end
+end
 end
 end
 end
