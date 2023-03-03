@@ -251,9 +251,14 @@ elseif _G.OnOff == false and tonumber(speed) >= 1200 and (game.Players.LocalPlay
         hypercheck.Visible = true
     for i=1,1500 do
     if (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) and (game.Players.LocalPlayer.PlayerGui.PlaneGui.Enabled == true) then
+        local spe = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
+        local speedd = spe:gsub("kts","")
+        if tonumber(speedd) >= 1200 then
     vFLY(a/onekts)
     hypercheck.Text = string.format("%.0f",a).."/4000"
     if tonumber(a) >= 4000 then
+        vFLY(4000*1.020148/onekts)
+        hypercheck.Text = "4000/4000"
         break
         else
         task.wait(0.025)
@@ -273,6 +278,7 @@ elseif _G.OnOff == false and tonumber(speed) >= 1200 and (game.Players.LocalPlay
     end
     _G.toend = true
     if _G.ended then hypercheck.Visible = false NOFLY() _G.ended = false _G.toend = false _G.OnOff = false break end
+    else hypercheck.Visible = false NOFLY() _G.OnOff = false _G.ended = false _G.toend = false break end
     else hypercheck.Visible = false NOFLY() _G.OnOff = false _G.ended = false _G.toend = false break end
 end
 _G.OnOff = true
