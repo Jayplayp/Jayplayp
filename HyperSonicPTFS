@@ -177,7 +177,7 @@ function vFLY(vfspeed)
 				    SPEED = 0
 				end
 		     	if CONTROL.F ~= 0 or CONTROL.F == 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * CONTROL.F) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(0, 0, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * CONTROL.F) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(0, -0.8, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
 				else
 					BV.velocity = Vector3.new(0, 0, 0)
 			    end
