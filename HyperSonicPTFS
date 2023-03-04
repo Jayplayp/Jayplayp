@@ -202,9 +202,10 @@ function NOFLY()
 end
 
 local onekts = 93.511
-_G.OnOff = false
-_G.ended = false
-_G.toend = false
+speedtoboost = 200
+_G.OnOff = true
+debounce = false
+_G.iscycle = false
 
 task.spawn(function()
     while true do
@@ -215,7 +216,7 @@ task.spawn(function()
         else
         local s = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
         local speed = s:gsub("kts","")
-        if tonumber(speed) >= 1200 then
+        if tonumber(speed) >= speedtoboost then
         available.Visible = true
         else available.Visible = false
         end
@@ -239,29 +240,36 @@ local s = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
 local perc = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Throttle.Bar.Percent.Text
 local speed = s:gsub("kts","")
 local a = speed
-if _G.OnOff == true and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
-_G.OnOff = false
-NOFLY()
+if _G.OnOff == false and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
+_G.OnOff = true
+if _G.iscycle then
+_G.iscycle = false hypercycle:Disconnect()
+end
 hypercheck.Visible = false
+NOFLY()
+wait(0.2)
+NOFLY()
 
-elseif _G.OnOff == false and tonumber(speed) >= 1200 and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
-    if _G.toend == true then
-        _G.ended = true
-    elseif _G.toend == false then
+elseif _G.OnOff == true and tonumber(speed) >= speedtoboost and (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) then
         hypercheck.Visible = true
-    for i=1,1500 do
+hypercycle = game:GetService("RunService").Heartbeat:Connect(function()
+    if debounce then return end
+    _G.OnOff = false
+        debounce = true
+        task.wait(0.025)
+    _G.iscycle = true
     if (game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")) and (game.Players.LocalPlayer.PlayerGui.PlaneGui.Enabled == true) then
         local spe = game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text
         local speedd = spe:gsub("kts","")
-        if tonumber(speedd) >= 1200 then
+        if tonumber(speedd) >= speedtoboost then
     vFLY(a/onekts)
     hypercheck.Text = string.format("%.0f",a).."/4000"
     if tonumber(a) >= 4000 then
         vFLY(4000*1.020148/onekts)
         hypercheck.Text = "4000/4000"
-        break
+        _G.iscycle = false
+        hypercycle:Disconnect()
         else
-        task.wait(0.025)
     if perc == "100%" then
     a = a+8
     elseif perc >= "80%" then
@@ -276,21 +284,36 @@ elseif _G.OnOff == false and tonumber(speed) >= 1200 and (game.Players.LocalPlay
     a = a+3
     end
     end
-    _G.toend = true
-    if _G.ended then hypercheck.Visible = false NOFLY() _G.ended = false _G.toend = false _G.OnOff = false break end
-    else hypercheck.Visible = false NOFLY() _G.OnOff = false _G.ended = false _G.toend = false break end
-    else hypercheck.Visible = false NOFLY() _G.OnOff = false _G.ended = false _G.toend = false break end
-end
-_G.OnOff = true
-_G.ended = false
-_G.toend = false
-end
+    else
+        NOFLY()
+        wait(0.2)
+        NOFLY()
+        _G.OnOff = false
+        hypercheck.Visible = false
+        if _G.iscycle then
+        _G.iscycle = false hypercycle:Disconnect() end
+        end
+    else
+        NOFLY()
+        wait(0.2)
+        NOFLY()
+        _G.OnOff = false
+        hypercheck.Visible = false
+        if _G.iscycle then
+        _G.iscycle = false hypercycle:Disconnect() end
+    end
+    debounce = false
+end)
+
 end
 else
-game.Players.LocalPlayer.PlayerGui.PlaneGui.Panel.Speed.Value.Text = "0kts"
-_G.OnOff = false _G.ended = false _G.toend = false
-hypercheck.Visible = false
-NOFLY()
+    NOFLY()
+    wait(0.2)
+    NOFLY()
+    _G.OnOff = false
+    hypercheck.Visible = false
+    if _G.iscycle then
+    _G.iscycle = false hypercycle:Disconnect() end
 end
 end
 end
