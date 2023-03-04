@@ -202,7 +202,7 @@ function NOFLY()
 end
 
 local onekts = 93.511
-speedtoboost = 200
+speedtoboost = 1200
 _G.OnOff = true
 debounce = false
 _G.iscycle = false
