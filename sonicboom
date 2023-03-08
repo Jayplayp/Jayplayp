@@ -70,7 +70,7 @@ local b = game.Players.LocalPlayer.Character.Torso.Position
 for k in pairs(a) do
 local magn = math.abs((k.Position-b).magnitude)
 
-if magn < 2500 and magn > 20 then
+if magn < 2500 and magn > 50 then
 
     
 if k.Velocity.Magnitude*1.833/1.958/340.27777778 > 1.95 and k.Velocity.Magnitude*1.833/1.958/340.27777778 < 3.2 then
