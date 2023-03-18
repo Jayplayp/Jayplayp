@@ -1,0 +1,28 @@
+localp = game.Players.LocalPlayer
+_G.tr = true
+
+while _G.tr do
+    task.wait()
+    if localp.Character:FindFirstChild("Head") then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v.Character then
+                if v.Character:FindFirstChild("Head") then
+                    if v.Name ~= localp.Name and v.Character.Head:FindFirstChild("HeadDisplay") then
+                        --distance--
+                        a = v.Character.Head.Position
+                        b = localp.Character.Head.Position
+                        magnitud = math.abs((a-b).magnitude)
+                        distanceKm = (magnitud*0.305)/1000
+                        --speedometer
+                        aspeedMach = (v.Character.Head.Velocity.Magnitude*0.305)/340.29
+                        if aspeedMach > 0.06 then
+                        v.Character.Head.HeadDisplay.Disp.TextLabel.Text = v.DisplayName.." (Distance: "..string.format("%.2f",distanceKm).." km, speed: "..string.format("%.2f",aspeedMach).." Mach)"
+                        else
+                        v.Character.Head.HeadDisplay.Disp.TextLabel.Text = v.DisplayName.." (Distance: "..string.format("%.2f",distanceKm).." km)"
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
