@@ -1,0 +1,267 @@
+_G.ggg = true
+
+task.spawn(function()
+    while _G.ggg do
+    task.wait()
+        for i,v in pairs(game.Workspace.SpawnedVehicles:GetChildren()) do
+            if v:FindFirstChild("MainParts") then
+                if v.MainParts:FindFirstChild("Main") then
+                    if v.MainParts.Main:FindFirstChild("Sredne") or v.MainParts.Main:FindFirstChild("Sredne2") then
+                        else
+                        for i=1,3 do
+                        local sound = Instance.new("Sound")
+                        sound.Parent = v.MainParts.Main
+                        sound.Name = "Sredne"
+                        sound.SoundId = "rbxassetid://9119382813"
+                        sound.Volume = 10
+                        sound.RollOffMaxDistance = 13000
+                        sound.RollOffMinDistance = 8000
+                        sound.RollOffMode = "InverseTapered"
+                        end
+                        for i=1,3 do 
+                        local sound2 = Instance.new("Sound")
+                        sound2.Parent = v.MainParts.Main
+                        sound2.Name = "Sredne2"
+                        sound2.SoundId = "rbxassetid://9119382493"
+                        sound2.Volume = 10
+                        sound2.RollOffMaxDistance = 13000
+                        sound2.RollOffMinDistance = 8000
+                        sound2.RollOffMode = "InverseTapered"
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+difference = 0.07
+
+timing1_1Mach1_3 = true
+waiting1_2Rand1 = 3.15
+waiting1_2Rand2 = waiting1_2Rand1-difference
+
+timing1_3Mach1_5 = true
+waiting1_4Rand1 = 2.6
+waiting1_4Rand2 = waiting1_4Rand1-difference
+
+timing1_5Mach1_7 = true
+waiting1_6Rand1 = 2.25
+waiting1_6Rand2 = waiting1_6Rand1-difference
+
+timing1_7Mach1_9 = true
+waiting1_8Rand1 = 1.9
+waiting1_8Rand2 = waiting1_8Rand1-difference
+
+timing1_9Mach2_1 = true
+waiting2Rand1 = 1.7
+waiting2Rand2 = waiting2Rand1-difference
+
+timing2_1Mach2_3 = true
+waiting2_2Rand1 = 1.58
+waiting2_2Rand2 = waiting2_2Rand1-difference
+
+timing2_3Mach2_5 = true
+waiting2_4Rand1 = 1.38
+waiting2_4Rand2 = waiting2_4Rand1-difference
+
+a = {}
+
+task.spawn(function()
+    while _G.ggg do
+        task.wait()
+        if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            for i,v in pairs(workspace.SpawnedVehicles:GetChildren()) do
+                if v:FindFirstChild("MainParts") then
+                    if v.MainParts:FindFirstChild("Main") then
+                        a[v.MainParts.Main] = v.MainParts.Main
+                    end
+                end
+            end
+            b = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+            for k in pairs(a) do
+            magn = math.abs((k.Position-b).magnitude)
+            if magn < 5000 and magn > 100 then
+                print("yes "..magn)
+                
+                if (k.Velocity.Magnitude*0.305)/340.29 > 1.1 and (k.Velocity.Magnitude*0.305)/340.29 < 1.3 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing1_1Mach1_3 then
+                    timing1_1Mach1_3 = false
+                    wait(waiting1_2Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing1_1Mach1_3 = true
+                elseif rand == 2 and timing1_1Mach1_3 then
+                    timing1_1Mach1_3 = false
+                    wait(waiting1_2Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing1_1Mach1_3 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 1.3 and (k.Velocity.Magnitude*0.305)/340.29 < 1.5 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing1_3Mach1_5 then
+                    timing1_3Mach1_5 = false
+                    wait(waiting1_4Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing1_3Mach1_5 = true
+                elseif rand == 2 and timing1_3Mach1_5 then
+                    timing1_3Mach1_5 = false
+                    wait(waiting1_4Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing1_3Mach1_5 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 1.5 and (k.Velocity.Magnitude*0.305)/340.29 < 1.7 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing1_5Mach1_7 then
+                    timing1_5Mach1_7 = false
+                    wait(waiting1_6Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing1_5Mach1_7 = true
+                elseif rand == 2 and timing1_5Mach1_7 then
+                    timing1_5Mach1_7 = false
+                    wait(waiting1_6Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing1_5Mach1_7 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 1.7 and (k.Velocity.Magnitude*0.305)/340.29 < 1.9 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing1_7Mach1_9 then
+                    timing1_7Mach1_9 = false
+                    wait(waiting1_8Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing1_7Mach1_9 = true
+                elseif rand == 2 and timing1_7Mach1_9 then
+                    timing1_7Mach1_9 = false
+                    wait(waiting1_8Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing1_7Mach1_9 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 1.9 and (k.Velocity.Magnitude*0.305)/340.29 < 2.1 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing1_9Mach2_1 then
+                    timing1_9Mach2_1 = false
+                    wait(waiting2Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing1_9Mach2_1 = true
+                elseif rand == 2 and timing1_9Mach2_1 then
+                    timing1_9Mach2_1 = false
+                    wait(waiting2Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing1_9Mach2_1 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 2.1 and (k.Velocity.Magnitude*0.305)/340.29 < 2.3 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing2_1Mach2_3 then
+                    timing2_1Mach2_3 = false
+                    wait(waiting2_2Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing2_1Mach2_3 = true
+                elseif rand == 2 and timing2_1Mach2_3 then
+                    timing2_1Mach2_3 = false
+                    wait(waiting2_2Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing2_1Mach2_3 = true
+                end
+                
+                
+                elseif (k.Velocity.Magnitude*0.305)/340.29 > 2.3 and (k.Velocity.Magnitude*0.305)/340.29 < 2.5 then
+                local rand = math.random(1,2)
+                if rand == 1 and timing2_3Mach2_5 then
+                    timing2_3Mach2_5 = false
+                    wait(waiting2_4Rand1)
+                for b,n in pairs(k:GetChildren()) do
+                    if n.Name == "Sredne" then
+                        n.Playing = true
+                    end
+                end
+                wait(6.5)
+                timing2_3Mach2_5 = true
+                elseif rand == 2 and timing2_3Mach2_5 then
+                    timing2_3Mach2_5 = false
+                    wait(waiting2_4Rand2)
+                for n,k in pairs(k:GetChildren()) do
+                    if k.Name == "Sredne2" then
+                        k.Playing = true
+                    end
+                end
+                wait(9)
+                timing2_3Mach2_5 = true
+                end
+                
+                
+                    end
+                end
+            end
+        end
+    end
+end)
