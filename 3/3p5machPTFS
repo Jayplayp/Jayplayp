@@ -133,9 +133,9 @@ task.spawn(function()
 while _G.speedom do
         task.wait()
     if (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")) then
-    km.Text = string.format("%.1f",((game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)*1.839))
-    maxu.Text = string.format("%.2f",(game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)/(1.958)/340.27777778)
-    kts.Text = string.format("%.1f",game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*1.833)
+    km.Text = string.format("%.1f",((game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*0.305)*3.6))
+    maxu.Text = string.format("%.2f",(game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*0.305)/340.29)
+    kts.Text = string.format("%.1f",game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity.Magnitude*0.305*(1.852))
     end
 end
 end)
@@ -201,7 +201,7 @@ function NOFLY()
 	end
 end
 
-local onekts = 93.511
+local onekts = 28.8
 speedtoboost = 1200
 _G.OnOff = true
 debounce = false
@@ -268,10 +268,10 @@ hypercycle = game:GetService("RunService").Heartbeat:Connect(function()
         else
         if tonumber(speedd) >= speedtoboost then
     vFLY(a/onekts)
-    hypercheck.Text = string.format("%.0f",a).."/4000"
-    if tonumber(a) >= 4000 then
-        vFLY(4000*1.020148/onekts)
-        hypercheck.Text = "4000/4000"
+    hypercheck.Text = string.format("%.0f",a).."/2315"
+    if tonumber(a) >= 2315 then
+        vFLY(2315/onekts)
+        hypercheck.Text = "2315/2315"
         _G.iscycle = false
         hypercycle:Disconnect()
         else
