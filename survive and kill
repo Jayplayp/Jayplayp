@@ -1,0 +1,88 @@
+repeat wait() until game:IsLoaded()
+local VIM = game:GetService("VirtualInputManager")
+local Player = game:GetService("Players").LocalPlayer
+local UIS = game:GetService("UserInputService")
+local Mouse1 = Player:GetMouse()
+local killers = {}
+local BodyKillers = {}
+local magn2
+ba = false
+
+_G.enabled = true
+local a
+local b
+        local Mouse = setmetatable({}, {
+    __index = function(table, index)
+        return UIS:GetMouseLocation()[index]
+    end
+})
+task.spawn(function()
+    while _G.enabled == true do
+        task.wait()
+    for i,v in next,Workspace.Killers:GetChildren() do
+        if v.Name ~= "Jane" then
+        killers[v.Name] = v.Name
+        end
+    end
+    for k in pairs(killers) do
+	if Mouse1.Target.Parent.Name == k and Mouse1.Target.Parent.Zombie.Health > 2 and ba then
+	    task.spawn(function()
+	    for i = 1, 2 do
+  VIM:SendMouseButtonEvent(Mouse.X, Mouse.Y, false, i == 1, nil, 0) end end) end
+end
+end
+end)
+
+task.spawn(function()
+while _G.enabled do
+task.wait()
+if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+for i,v in pairs(game.Workspace.Killers:GetChildren()) do
+    if v:FindFirstChild("HumanoidRootPart") then
+    BodyKillers[v.HumanoidRootPart] = v.HumanoidRootPart
+    elseif v:FindFirstChild("Torso") then
+    BodyKillers[v.Torso] = v.Torso
+    end
+end
+
+local Rayplayer = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+for k in pairs(BodyKillers) do
+local Raykiller = k.Position
+local RayDirect = Raykiller - Rayplayer.Position
+local params = RaycastParams.new()
+params.FilterType = Enum.RaycastFilterType.Blacklist
+if k.Parent ~= nil then
+params.FilterDescendantsInstances = {
+    k.Parent:FindFirstChild("Left Arm"),
+    k.Parent:FindFirstChild("Right Arm"),
+    k.Parent:FindFirstChild("Right Leg"),
+    k.Parent:FindFirstChild("Left Leg"),
+    k.Parent:FindFirstChild("Head"),
+    Rayplayer.Parent:FindFirstChild("Left Arm"),
+    Rayplayer.Parent:FindFirstChild("Right Arm"),
+    Rayplayer.Parent:FindFirstChild("Right Leg"),
+    Rayplayer.Parent:FindFirstChild("Left Leg"),
+    Rayplayer.Parent:FindFirstChild("Head")
+} end
+local RayCast = workspace:Raycast(Rayplayer.Position,RayDirect,params)
+for g,h in pairs(Player.Character:GetChildren()) do
+    if h:IsA("Tool") then
+        ba = true
+    else
+        ba = false
+    end
+end
+if RayCast and RayCast.Instance.Parent == k.Parent and k.Parent:FindFirstChild("Zombie") and Rayplayer.Parent:FindFirstChild("Humanoid") and ba then
+a = k.Parent.Torso.Position
+b = Player.Character.HumanoidRootPart.Position
+local magn = math.abs((a-b).magnitude)
+if game.Players.LocalPlayer.Character:FindFirstChild("AWP") or game.Players.LocalPlayer.Character:FindFirstChild("PAPAWP") then magn2 = 120 else magn2 = 85 end
+if magn <= magn2 and k.Parent:FindFirstChild("Zombie").Health > 2 and k.Parent.Name ~= "Jane" and Rayplayer.Parent.Humanoid.Health > 0 then
+workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.p,k.Parent.Head.CFrame.p)
+end
+end
+end
+end
+end
+end)
